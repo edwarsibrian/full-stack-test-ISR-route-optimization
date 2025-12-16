@@ -24,3 +24,13 @@ dist-ssr
 *.sw?
 /.vs
 /frontend/.vs
+/backend/.vs/ISR
+/backend/ISR.Api/obj
+/backend/ISR.Application/obj
+/backend/ISR.Domain/obj
+/backend/ISR.Infrastructure/obj
+/backend/.vs/ProjectEvaluation
+/backend/src/ISR.Api/obj
+/backend/src/ISR.Application/obj
+/backend/src/ISR.Domain/obj
+/backend/src/ISR.Infrastructure/obj

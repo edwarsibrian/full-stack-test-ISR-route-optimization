@@ -1,6 +1,5 @@
 import CsvFileSelect from "../../../components/CsvFileSelect";
 import apiClient from "../../../api/axiosClient";
-/*import { useState } from "react";*/
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
@@ -9,25 +8,11 @@ import * as yup from "yup";
 
 import Button from "../../../components/Button";
 import type UploadLeadResultModel from "../models/UploadLeadResultModel";
-/*import type UploadLeadsFormModel from "../models/UploadLeadsFormModel";*/
-/*import type UploadLeadsInputModel from "../models/UploadLeadsInputModel";*/
 
-
-//async function uploadLeadsFile(file: File, source: LeadSource): Promise<UploadLeadResultModel> {
-//    const formData = new FormData();
-//    formData.append("file", file);
-//    formData.append("source", source);
-
-//    const response = await apiClient.post<UploadLeadResultModel>("/leads/upload", formData);
-//    return response.data;
-//}
 
 export default function UploadLeads(props: UploadLeadsProps) {
 
-    //const initialFormState: UploadLeadsFormModel = {
-    //    manager: { status: "idle" },
-    //    isr: { status: "idle" }
-    //};
+    
     type UploadLeadsFormSchema = yup.InferType<typeof validationSchema>;
     type UploadLeadsFormModel = UploadLeadsFormSchema;
 
@@ -102,22 +87,7 @@ export default function UploadLeads(props: UploadLeadsProps) {
     );
 }
 
-//function UploadStatusView({ input }: { input: UploadLeadsInputModel }) {
-//    switch (input.status) {
-//        case "uploading":
-//            return <p className="text-sm">Uploading...</p>;
-//        case "success":
-//            return (
-//                <p className="text-sm text-green-600">
-//                    {input.result?.importedLeads} leads imported
-//                </p>
-//            );
-//        case "error":
-//            return <p className="text-sm text-red-600">{input.error}</p>;
-//        default:
-//            return <p className="text-sm text-muted-foreground">No file uploaded</p>;
-//    }
-//}
+
 
 interface UploadLeadsProps {
     onSuccess?: (result: UploadLeadResultModel) => void;

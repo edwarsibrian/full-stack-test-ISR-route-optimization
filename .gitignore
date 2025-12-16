@@ -38,3 +38,5 @@ dist-ssr
 /backend/src/ISR.Application/bin/Debug/net9.0
 /backend/src/ISR.Domain/bin/Debug/net9.0
 /backend/src/ISR.Infrastructure/bin/Debug/net9.0
+/backend/src/ISR.Application.Tests/bin
+/backend/src/ISR.Application.Tests/obj

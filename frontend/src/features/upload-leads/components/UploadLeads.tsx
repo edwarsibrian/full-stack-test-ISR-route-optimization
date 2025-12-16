@@ -2,6 +2,7 @@ import CsvFileSelect from "../../../components/CsvFileSelect";
 import apiClient from "../../../api/axiosClient";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -19,6 +20,8 @@ export default function UploadLeads(props: UploadLeadsProps) {
     const { handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm<UploadLeadsFormSchema>({
         resolver: yupResolver(validationSchema),
     });
+
+    const [result, setResult] = useState<UploadLeadResultModel | null>(null);
 
     const uploadMutation = useMutation({
         mutationFn: async (form: UploadLeadsFormModel) => {
@@ -44,9 +47,11 @@ export default function UploadLeads(props: UploadLeadsProps) {
             return response.data;
         },
         onSuccess: (data) => {
+            setResult(data);
             props.onSuccess?.(data);
         },
         onError: (error) => {
+            setResult(null);
             props.onError?.(error as Error);
         },
     });
@@ -63,9 +68,10 @@ export default function UploadLeads(props: UploadLeadsProps) {
 
             <CsvFileSelect
                 label="Manager Lead List (CSV)"
-                onFileSelect={(file) =>
+                onFileSelect={(file) => {
+                    setResult(null);
                     setValue("manager.file", file, { shouldValidate: true })
-                }
+                }}
             />
             {errors.manager?.file && (
                 <p className="text-danger">{errors.manager.file.message}</p>
@@ -73,9 +79,10 @@ export default function UploadLeads(props: UploadLeadsProps) {
 
             <CsvFileSelect
                 label="Your Lead List (Optional CSV)"
-                onFileSelect={(file) =>
+                onFileSelect={(file) => {
+                    setResult(null);
                     setValue("isr.file", file, { shouldValidate: true })
-                }
+                }}
             />
             {errors.isr?.file && (
                 <p className="text-danger">{errors.isr.file.message}</p>
@@ -90,6 +97,18 @@ export default function UploadLeads(props: UploadLeadsProps) {
             <Button type="submit" disabled={isSubmitting || uploadMutation.isPending}>
                 {uploadMutation.isPending ? "Uploading..." : "Upload Leads"}
             </Button>
+
+            {result && (
+                <div className="rounded-md border border-success bg-success/10 p-4 space-y-1">
+                    <h3 className="font-semibold text-success">
+                        Upload completed successfully
+                    </h3>
+
+                    <p>Total rows: <strong>{result.totalRows}</strong></p>
+                    <p>Imported leads: <strong>{result.importedLeads}</strong></p>
+                    <p>Failed leads: <strong>{result.failedLeads}</strong></p>
+                </div>
+            )}
         </form>
     );
 }

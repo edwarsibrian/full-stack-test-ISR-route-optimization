@@ -49,7 +49,7 @@ namespace ISR.Infrastructure.Persistence.Repositories
                 }
                 catch
                 {
-                    // Aquí podrías contar fallidos si quieres
+                    // some errors
                 }
             }
 

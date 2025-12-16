@@ -32,7 +32,14 @@ export default function UploadLeads(props: UploadLeadsProps) {
                 formData.append("isrFile", form.isr.file);
             }
 
-            const response = await apiClient.post<UploadLeadResultModel>("/leads/upload",formData);
+            const response = await apiClient.post<UploadLeadResultModel>(
+                "/leads/upload",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
 
             return response.data;
         },

@@ -1,0 +1,6 @@
+@ISR.Api_HostAddress = http://localhost:5007
+
+GET {{ISR.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

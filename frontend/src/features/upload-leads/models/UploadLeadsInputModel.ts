@@ -1,3 +1,9 @@
+import type { UploadStatus } from "../types/leads.types";
+import type UploadLeadResultModel from "./UploadLeadResultModel";
+
 export default interface UploadLeadsInputModel {
     file?: File;
-    status: "idle" | "uploading" | "success" | "error";
+    status: UploadStatus;
+    result?: UploadLeadResultModel;
+    error?: string;
+}

@@ -14,5 +14,8 @@ namespace ISR.Application.Common.Interfaces
         Task AddRangeAsync(
             IEnumerable<Lead> leads,
             CancellationToken cancellationToken);
+
+        Task<IReadOnlyList<Lead>> GetAllAsync(
+            CancellationToken cancellationToken);
     }
 }

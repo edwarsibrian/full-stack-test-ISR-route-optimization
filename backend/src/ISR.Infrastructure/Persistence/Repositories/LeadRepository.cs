@@ -2,6 +2,7 @@
 using ISR.Domain.Entities;
 using ISR.Domain.Enums;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace ISR.Infrastructure.Persistence.Repositories
 {
@@ -65,6 +66,15 @@ namespace ISR.Infrastructure.Persistence.Repositories
         {
             _context.Leads.AddRange(leads);
             await _context.SaveChangesAsync(ct);
+        }
+
+        public async Task<IReadOnlyList<Lead>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            var leads = await _context.Leads
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
+
+            return leads.AsReadOnly();
         }
     }
 }

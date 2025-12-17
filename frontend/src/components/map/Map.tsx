@@ -1,6 +1,7 @@
 import { MapContainer, Marker, TileLayer, useMapEvent, Popup } from "react-leaflet";
 import type CoordinateModel from "./Coordinate.model";
 import { useState } from "react";
+import { Polyline } from "react-leaflet";
 //import { useMap } from "react-leaflet";
 //import { useEffect } from "react";
 
@@ -24,6 +25,12 @@ export default function Map(props: MapProps) {
                 <Marker key={coordinate.lat + coordinate.lng} position={[coordinate.lat, coordinate.lng]}>
                     {coordinate.message ? <Popup>{coordinate.message}</Popup> : undefined}
                 </Marker>
+            )}
+
+            {props.drawPolyline && coordinates && coordinates.length > 1 && (
+                <Polyline
+                    positions={coordinates.map(c => [c.lat, c.lng])}
+                />
             )}
         </MapContainer>
     )
@@ -57,4 +64,5 @@ interface MapClickProps {
 interface MapProps {
     selectedPlace?: (coordinate: CoordinateModel) => void;
     coordinates?: CoordinateModel[];
+    drawPolyline?: boolean;
 }

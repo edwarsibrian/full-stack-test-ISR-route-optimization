@@ -1,8 +1,5 @@
-﻿using ISR.Application.Common.Interfaces;
-using ISR.Application.Home;
-using ISR.Domain.Entities;
+﻿using ISR.Application.Home;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ISR.Api.Controllers

@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using ISR.Application.Common.Behaviors;
+using ISR.Application.Common.Interfaces;
+using ISR.Application.Services;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -16,6 +18,8 @@ namespace ISR.Application.Configuration
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+            services.AddScoped<IRouteOptimizer, NearestNeighborRouteOptimizer>();
 
             return services;
         }

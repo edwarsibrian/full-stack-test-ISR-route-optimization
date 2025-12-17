@@ -79,3 +79,9 @@ Main features:
 
 The use of an in-memory database allows the project to be run and tested quickly without additional setup.  
 The architecture is designed to be easily extensible for future enhancements such as persistent storage, authentication, or more advanced routing algorithms.
+
+## Sample CSV Files
+
+The repository includes sample CSV files under `/samples/csv` that can be used to test the lead upload functionality without creating custom data.
+
+These files are provided for demonstration purposes only and are not used by the application at runtime.

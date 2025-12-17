@@ -11,5 +11,6 @@ namespace ISR.Infrastructure.Persistence
         }
 
         public DbSet<Lead> Leads => Set<Lead>();
+        public DbSet<HomeAddress> HomeAddresses => Set<HomeAddress>();
     }
 }

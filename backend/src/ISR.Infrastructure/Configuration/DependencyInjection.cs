@@ -22,6 +22,7 @@ namespace ISR.Infrastructure.Configuration
                 options.UseInMemoryDatabase("IsrDb"));
 
             services.AddScoped<ILeadRepository, LeadRepository>();
+            services.AddScoped<IHomeAddressRepository, HomeAddressRepository>();
 
             return services;
         }
